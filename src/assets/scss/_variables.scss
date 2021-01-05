@@ -1,0 +1,68 @@
+// _variables is automatically included in components and never need to be imported (see vue config)
+@import '_mixins';
+
+$body-font: 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$title-font: 'Montserrat', 'Open Sans', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+$code-font: 'Roboto Mono', SFMono-Regular, Menlo, Monaco, "Liberation Mono", monospace, Consolas, consolas, "Courier New", monospace !default;
+
+// bootstrap variables still override from here
+$blue:    #0876cf;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #c34201 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$light-green: #00b938 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$white:    #fff    !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000    !default;
+
+$themes: (
+  "light-theme": (
+    "colors": (
+      "text": #222222,
+      "bg": #d5d8dd,
+    )
+  ),
+  "dark-theme": (
+    "colors": (
+      "text": #e9e9e9,
+      "bg": #222327,
+      // "older_bg": #211d2b,
+      // "old_bg": #263238,
+    )
+  )
+);
+
+@each $theme-name, $theme-vars in $themes {
+  $colors: map-get($theme-vars, "colors");
+
+  body.#{$theme-name} {
+    @each $name, $color in $colors {
+      --#{$name}: #{$color};
+      --#{$name}-light: #{lighten($color, 3%)};
+      --#{$name}-lighter: #{lighten($color, 6%)};
+      --#{$name}-lightest: #{lighten($color, 9%)};
+      --#{$name}-sun: #{lighten($color, 25%)};
+      --#{$name}-dark: #{darken($color, 3%)};
+      --#{$name}-darker: #{darken($color, 6%)};
+      --#{$name}-darkest: #{darken($color, 9%)};
+      --#{$name}-jet: #{darken($color, 25%)};
+    }
+  }
+}

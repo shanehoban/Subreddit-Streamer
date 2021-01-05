@@ -1,0 +1,37 @@
+// _mixins is automatically included in variables, which is auto imported and never need to be imported (see vue config)
+
+@mixin w360 {
+  @media (min-width: 360px) {
+    @content;
+  }
+}
+
+@mixin w450 {
+  @media (min-width: 450px) {
+    @content;
+  }
+}
+
+@mixin w768 {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin w1024 {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin w1240 {
+  @media (min-width: 1240px) {
+    @content;
+  }
+}
+
+@mixin w1440 {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}

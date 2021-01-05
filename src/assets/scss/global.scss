@@ -1,0 +1,180 @@
+:root {
+  /**
+    This is the animation duration for animate.css
+    default is 1s
+  **/
+  --animate-duration: 0.35s;
+  --balloon-border-radius: 6px;
+  --balloon-color: #333333;
+  scroll-behavior: auto;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--bg);
+  transition: background-color 0.25s ease;
+}
+
+html {
+  font-size: 16px;
+  overflow-y: scroll;
+
+  @include w768 {
+    font-size: 15px;
+  }
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+#App {
+  overflow: hidden; // stops janking
+}
+
+.app-window {
+  h1, h2, h3, h4, h5 { font-weight: 600; }
+}
+
+.app-view,
+.filter-banner-content,
+.bottom-nav nav {
+  max-width: 90%;
+  margin: 0 auto;
+
+  @include w768 {
+    width: 650px;
+  }
+}
+
+// bootstrap icons
+.bi {
+  width: 1em;
+  height: 1em;
+}
+
+// toasts
+.notyf {
+  z-index: 100;
+  padding: 10px;
+  padding-bottom: 110px;
+
+  @include w768 {
+    padding: 15px;
+    padding-bottom: 70px;
+  }
+}
+
+.notyf__toast {
+  color: #fff;
+  font-size: 13px;
+  border-radius: 5px;
+  line-height: 13px;
+  box-shadow: none;
+  border: 0;
+  padding: 6px 0;
+  max-width: 250px;
+  width: auto;
+  user-select: none;
+
+  .notyf__wrapper {
+    padding: 0 7px;
+  }
+
+  &.toast-success { background: $green !important; }
+  &.toast-danger { background: $red !important; }
+  &.toast-primary { background: $primary; }
+}
+
+.notyf__toast--lower {
+  margin-top: 7px;
+}
+// end notyf
+
+a,
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+code {
+  border-radius: 5px;
+  padding: 3px 6px;
+  background: var(--bg-dark);
+  color: $blue;
+  font-weight: bold;
+
+  .light-theme & {
+    font-weight: normal;
+  }
+}
+
+hr {
+  opacity: 0.15;
+}
+
+
+.btn-list {
+  margin: -2.5px -2.5px;
+
+  .btn {
+    display: inline-block;
+    margin: 2.5px;
+  }
+
+  @include w768 {
+    margin: -5px -5px;
+
+    .btn {
+      margin: 5px;
+    }
+  }
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.hide-on-mobile {
+  display: none;
+
+  @include w768 {
+    display: inline-block;
+  }
+}
+
+.color-circle {
+  display: inline-block;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+
+  &.green { background: $green; }
+  &.blue { background: $blue; }
+  &.purple { background: $purple; }
+
+  &.todays-thread { background: $green; }
+  &.weekend-thread { background: $blue; }
+  &.tomorrows-thread { background: $purple; }
+}
+
+.color-circle.floating {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.reply-icon {
+  transform: scaleX(-1);
+}

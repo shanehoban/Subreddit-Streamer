@@ -1,0 +1,64 @@
+.spin {
+  animation-name: spin;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+@import '../../../node_modules/animate.css/animate.min';
+
+// custom naming convention of animate.css animations for ease of use
+
+.fadeIn {
+ @extend .animate__animated;
+ @extend .animate__fadeIn;
+}
+.fadeOut {
+ @extend .animate__animated;
+ @extend .animate__fadeOut;
+}
+
+.fadeInLeft {
+  @extend .animate__animated;
+  @extend .animate__fadeInLeft;
+}
+.fadeOutLeft {
+  @extend .animate__animated;
+  @extend .animate__fadeOutLeft;
+}
+
+.fadeInDown {
+  @extend .animate__animated;
+  @extend .animate__fadeInDown;
+}
+.fadeOutUp {
+  @extend .animate__animated;
+  @extend .animate__fadeOutUp;
+}
+
+.fadeInUp {
+  @extend .animate__animated;
+  @extend .animate__fadeInUp;
+}
+.fadeOutDown {
+  @extend .animate__animated;
+  @extend .animate__fadeOutDown;
+}
+
+.zoomIn {
+  @extend .animate__animated;
+  @extend .animate__zoomIn;
+}
+.zoomOut {
+  @extend .animate__animated;
+  @extend .animate__zoomOut;
+}

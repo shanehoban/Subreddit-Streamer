@@ -1,0 +1,42 @@
+.modal-wrapper {
+  overflow: auto;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.75);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 100; 
+  
+  @include w768 {
+    padding: 25px 0;
+  }
+}
+
+.modal-stuff {
+  position: relative;
+  background-color: var(--bg);
+  max-width: 775px;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 25px;
+}
+
+.modal-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  span {
+    text-align: center;
+  }
+
+   @include w768 {
+    justify-content: space-between;
+  }
+}

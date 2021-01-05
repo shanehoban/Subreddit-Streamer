@@ -1,0 +1,67 @@
+{
+  "name": "subreddit-streamer",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "shanehoban@gmail.com",
+  "private": true,
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve --open --hot --fix",
+    "dev": "npm run serve",
+    "build": "vue-cli-service build",
+    "postbuild": "node deploy/archive.js",
+    "deploy": "node deploy/deploy.js",
+    "bd": "npm run build",
+    "postbd": "npm run deploy",
+    "report": "vue-cli-service build --report"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.0",
+    "archiver": "^5.1.0",
+    "axios": "^0.19.1",
+    "balloon-css": "^1.2.0",
+    "bootstrap": "^5.0.0-beta1",
+    "core-js": "^3.8.0",
+    "es6-promise": "^4.2.8",
+    "marked": "^1.2.5",
+    "notyf": "^3.9.0",
+    "sass-loader": "^8.0.2",
+    "ssh2": "^0.8.9",
+    "ssh2-sftp-client": "^5.3.2",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.6.0",
+    "vuex-map-fields": "^1.4.1",
+    "vuex-persistedstate": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.14.1",
+    "style-resources-loader": "^1.3.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

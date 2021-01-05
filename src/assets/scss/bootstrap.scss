@@ -1,0 +1,82 @@
+/* 
+  Customize bootstrap in here. Default values should be left untouched
+*/
+
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+$font-family-sans-serif: $body-font;
+$headings-font-family: $title-font;
+$font-family-monospace: $code-font;
+
+@import "node_modules/bootstrap/scss/_functions";
+@import "node_modules/bootstrap/scss/_variables";
+
+// Create your own map - these are used to create btn-orange, or link-purple etc
+$custom-colors: (
+  "orange": $orange,
+  "purple": $purple,
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.btn {
+  font-family: $title-font;
+  font-weight: 500;  
+  border-radius: 6px;
+  letter-spacing: 0.25px;
+  transition: all 0.25s ease;
+}
+
+.light-theme {
+  .btn-outline-light {
+    @extend .btn-outline-dark;
+  }
+
+  .btn-light {
+    @extend .btn-dark;
+  }
+}
+
+/** 
+  .aria-links are e.g. blog elements that are links and we 
+  don't want the sub items in these to all have this font-family 
+**/
+a:not(.aria-link) {
+  font-family: $title-font;
+}
+
+.input-group .btn {
+  z-index: 0;
+}
+
+.input-group-text {
+  opacity: 0.5;
+
+  .light-theme & {
+    opacity: 0.75;
+  }
+}
+
+.input-group-text {
+  color: inherit;
+  background: var(--bg-light);
+  border: 1px solid var(--bg-light);
+}
+
+.form-control,
+.form-control:active,
+.form-control:focus {
+  color: inherit;
+  background: var(--bg-light);
+  border: 1px solid var(--bg-light);
+}

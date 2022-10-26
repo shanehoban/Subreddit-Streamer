@@ -1,62 +1,15 @@
 <template>
-  <div class="app-view">
+  <div>
+    <h1 v-if="comments.commentCount > 0">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+      </svg>
+      <span>Comments since you got here</span>
+    </h1>
 
-    <DebugBox v-if="debug" />
+    <CommentFeed />
 
-    <ModalWrapper :showIf="showSettingsModal" :modalContent="SettingsModal" />
-    <ModalWrapper :showIf="showUpdateModal" :modalContent="UpdateModal" />
-    <ModalWrapper :showIf="showSubredditModal" :modalContent="SubredditModal" />
-    <ModalWrapper :showIf="showStatsModal" :modalContent="StatsModal" />
-    <ModalWrapper :showIf="showThreadsModal" :modalContent="ThreadsModal" />
-
-    <LoadingOverlay v-show="initialLoading" />
-
-    <div v-show="!initialLoading" class="main-app">
-      
-      <div class="app-wrapper" v-if="!error">
-        <router-view></router-view>
-      </div>
-
-      <div class="nav-container" v-if="!error">
-        <FloatyNav />
-        <BottomNav />
-      </div>
-
-      <div class="error-text" v-else>
-        <h2 v-if="!isPrivate">Oopsie daisy</h2>
-        <h2 v-else>
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-lock2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
-            <path fill-rule="evenodd" d="M8 5a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1zm2 2.076V6a2 2 0 1 0-4 0v1.076c-.54.166-1 .597-1 1.224v2.4c0 .816.781 1.3 1.5 1.3h3c.719 0 1.5-.484 1.5-1.3V8.3c0-.627-.46-1.058-1-1.224z"/>
-          </svg>
-        </h2>
-
-        <p>Your subreddit is set to:</p>
-        <p class="fs-5">
-          <code>
-            <a :href="'https://www.reddit.com/r/' + subreddit +'?ref=subreddit-streamer'" target="_blank">
-              {{subreddit}}
-            </a>
-          </code>
-        </p>
-        <p>{{errorText}}</p>
-
-        <div v-if="subreddit !== 'askreddit' && !isPrivate">
-          <p class="text-muted">If the subreddit doesn't exist, or reddits servers are on fire, this could also be the problem.</p>
-        </div>
-
-        <p>
-          <button class="btn btn-success" @click="resetSubreddit">Reset Subreddit</button>
-        </p>
-        <small>it resets back to 
-          <code>
-            <a :href="'https://www.reddit.com/r/' + defaultSubreddit +'?ref=subreddit-streamer'" target="_blank">{{ defaultSubreddit }}</a>
-          </code>
-        </small>
-      </div>
-    </div> <!-- end main app -->
-
-    <Renderless />
+    <CommentFilterBanner />
   </div>
 </template>
 
@@ -65,28 +18,20 @@ import { mapState, mapMutations } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 import endpoints from '@/global/endpoints'
 
-import DebugBox from '@/components/DebugBox.vue'
-import LoadingOverlay from '@/components/LoadingOverlay.vue'
-import ModalWrapper from '@/components/modals/ModalWrapper.vue'
 import SettingsModal from '@/components/modals/SettingsModal.vue'
 import UpdateModal from '@/components/modals/UpdateModal.vue'
 import SubredditModal from '@/components/modals/SubredditModal.vue'
 import StatsModal from '@/components/modals/StatsModal.vue'
 import ThreadsModal from '@/components/modals/ThreadsModal.vue'
-import FloatyNav from '@/components/FloatyNav.vue'
-import BottomNav from '@/components/BottomNav.vue'
-import Renderless from '@/components/renderless/Renderless'
+import CommentFilterBanner from '@/components/CommentFilterBanner.vue'
+import CommentFeed from '@/components/CommentFeed.vue'
 
 // const marked = require("marked")
 
 export default {
   components: {
-    DebugBox,
-    LoadingOverlay,
-    ModalWrapper,
-    FloatyNav,
-    BottomNav,
-    Renderless,
+    CommentFilterBanner,
+    CommentFeed
   },
   data() {
     return {
